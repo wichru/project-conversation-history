@@ -50,4 +50,4 @@ $ rspec spec
 
 ### Demo app
 
-You can find a demo app deployed on Fly.io [here](https://dark-bird-5069.fly.dev/)
+You can find a demo app deployed on Fly.io [here](https://project-conversation-history.fly.dev/)
