@@ -1,0 +1,5 @@
+h3.text-lg.font-medium.mt-6 Add a Comment
+= form_with(url: project_comments_path(project), method: :post, data: { turbo_frame: "activities" }) do |f|
+  .mb-4
+    = f.text_area :content, name: "comment[content]", placeholder: "Enter your comment", class: "w-full p-2 border rounded", rows: 3
+  = f.submit "Add Comment", class: "bg-blue-500 text-white px-4 py-2 rounded"

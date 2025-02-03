@@ -2,22 +2,6 @@ h1.text-2xl.font-bold = @project.name
 turbo-frame#project_status
   = render ProjectStatusComponent.new(project: @project)
 
-/ Conversation History displayed
-h2.text-xl.font-semibold.mt-6 Conversation History
-turbo-frame#activities
-  - @project.activities.each do |activity|
-    = render(ActivityComponent.new(activity: activity))
-
-/ Add a Comment Form
-h3.text-lg.font-medium.mt-6 Add a Comment
-= form_with(url: project_comments_path(@project), method: :post, data: { turbo_frame: "activities" }) do |f|
-  .mb-4
-    = f.text_area :content, name: "comment[content]", placeholder: "Enter your comment", class: "w-full p-2 border rounded", rows: 3
-  = f.submit "Add Comment", class: "bg-blue-500 text-white px-4 py-2 rounded"
-
-/ Change Status Form
-h3.text-lg.font-medium.mt-6 Change Project Status
-= form_with(url: project_status_changes_path(@project), method: :post, data: { turbo_frame: "_top" }) do |f|
-  .mb-4
-    = f.select :to_status, options_for_select(Project.statuses.keys, @project.status), {}, class: "w-full p-2 border rounded", name: "status_change[to_status]"
-  = f.submit "Change Status", class: "bg-green-500 text-white px-4 py-2 rounded"
+= render ActivitiesListComponent.new(project: @project)
+= render CommentFormComponent.new(project: @project)
+= render StatusChangeFormComponent.new(project: @project)
