@@ -8,7 +8,7 @@ inherit_mode:
 
 AllCops:
   Include:
-    - "**/Gemfile"
+    - '**/Gemfile'
 
   CacheRootDirectory: tmp/cache/rubocop_cache/
   TargetRubyVersion: 3.3.4
@@ -19,6 +19,8 @@ Layout/EndOfLine:
   EnforcedStyle: lf
 
 Layout/LineLength:
+  Exclude:
+    - 'bin/**/*'
   Max: 120
 
 Layout/MultilineMethodCallIndentation:
@@ -27,7 +29,11 @@ Layout/MultilineMethodCallIndentation:
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
-    - "spec/**/*"
+    - 'spec/**/*'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
 
 Metrics/BlockLength:
   Enabled: false
@@ -55,4 +61,19 @@ Style/ModuleFunction:
 
 Style/HashSyntax:
   Exclude:
-    - "app/models/project.rb"
+    - 'app/models/project.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/**/*'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/**/*'

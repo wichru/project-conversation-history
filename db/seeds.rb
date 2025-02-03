@@ -1,38 +1,74 @@
-puts 'Clearing existing data...'
+puts 'Clearing database...'
 Project.destroy_all
+Activity.destroy_all
+puts 'Seeding data...'
 
-puts 'Creating projects...'
-projects = []
-10.times do
-  projects << Project.create!(
-    name: Faker::Company.catch_phrase,
-    status: Project.statuses.keys.sample
-  )
-end
+project = Project.first_or_create!(
+  name: 'Demo Project Homey',
+  status: 'pending'
+)
 
-puts 'Creating activities...'
-projects.each do |project|
-  rand(3..8).times do
-    Activity.create!(
-      type: Activity::COMMENT,
-      project: project,
-      author_name: Faker::Name.name,
-      content: Faker::Lorem.paragraph(sentence_count: 2)
-    )
-  end
+project.activities.create!(
+  type: Activity::STATUS_CHANGE,
+  from_status: 'pending',
+  to_status: 'active'
+)
+project.update!(status: 'active')
 
-  previous_status = 'pending'
-  rand(2..4).times do
-    new_status = (Project.statuses.keys - [previous_status]).sample
-    Activity.create!(
-      type: Activity::STATUS_CHANGE,
-      project: project,
-      author_name: Faker::Name.name,
-      from_status: previous_status,
-      to_status: new_status
-    )
-    previous_status = new_status
-  end
-end
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'Q: Is the conversation history per project or global?'
+)
 
-puts 'Done!'
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'A: Per project. Each project has its own conversation history.'
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'Q: What statuses are allowed for a project?'
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: "A: Allowed statuses are 'pending', 'active', and 'completed'."
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'Q: Should a status change record both the old and new status?'
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'A: Yes, record both the previous and new status.'
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'Q: Should notifications be shown when actions occur?'
+)
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'A: Yes. We should show a success or error notification using our Ui::NotificationComponent.'
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'Q: Should the UI update dynamically when changes occur?'
+)
+
+project.activities.create!(
+  type: Activity::COMMENT,
+  content: 'A: Yes, we will use Turbo Streams so that changes are shown without a full page reload.'
+)
+
+project.activities.create!(
+  type: Activity::STATUS_CHANGE,
+  from_status: 'active',
+  to_status: 'completed'
+)
+project.update!(status: 'completed')
+
+puts "Seed data loaded for project: #{project.name} (Status: #{project.status})"
