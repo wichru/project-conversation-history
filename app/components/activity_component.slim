@@ -2,3 +2,5 @@ div.border-b.py-2
   span.text-sm.text-gray-500 = formatted_date(activity.created_at)
   - if activity.is_a?(Comment)
     p.mt-1 = "Comment: #{activity.content}"
+  - elsif activity.is_a?(StatusChange)
+    p.mt-1 = "Status changed from #{activity.from_status} to #{activity.to_status}"

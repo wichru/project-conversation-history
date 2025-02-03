@@ -52,3 +52,7 @@ Style/FrozenStringLiteralComment:
 
 Style/ModuleFunction:
   Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - "app/models/project.rb"

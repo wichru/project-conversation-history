@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.prepend(
+            turbo_stream.append(
               'activities',
               html: ActivityComponent.new(activity: @activity).render_inline
             ),

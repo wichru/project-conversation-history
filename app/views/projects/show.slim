@@ -1,10 +1,8 @@
-/ Display Project Details
 h1.text-2xl.font-bold = @project.name
-p.text-lg.mt-2
-  | Project Current Status:
-  strong = @project.status.humanize
+turbo-frame#project_status
+  = render ProjectStatusComponent.new(project: @project)
 
-/ Conversation History wrapped in a Turbo Frame for live updates
+/ Conversation History displayed
 h2.text-xl.font-semibold.mt-6 Conversation History
 turbo-frame#activities
   - @project.activities.each do |activity|
@@ -19,7 +17,7 @@ h3.text-lg.font-medium.mt-6 Add a Comment
 
 / Change Status Form
 h3.text-lg.font-medium.mt-6 Change Project Status
-= form_with(url: project_status_changes_path(@project), method: :post, data: { turbo_frame: "activities" }) do |f|
+= form_with(url: project_status_changes_path(@project), method: :post, data: { turbo_frame: "_top" }) do |f|
   .mb-4
     = f.select :to_status, options_for_select(Project.statuses.keys, @project.status), {}, class: "w-full p-2 border rounded", name: "status_change[to_status]"
   = f.submit "Change Status", class: "bg-green-500 text-white px-4 py-2 rounded"

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resources :projects, only: %i[show] do
     resources :comments, only: %i[create]
+    resources :status_changes, only: %i[create]
   end
 end
