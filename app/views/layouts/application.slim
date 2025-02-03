@@ -17,6 +17,7 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
 
-  body
-    main.container.mx-auto.mt-28.px-5.flex
-      = yield
+  body class="bg-gray-100 p-6"
+    #flash
+      = render Ui::FlashComponent.new(flash:)
+    = yield

@@ -1,0 +1,4 @@
+div.border-b.py-2
+  span.text-sm.text-gray-500 = formatted_date(activity.created_at)
+  - if activity.is_a?(Comment)
+    p.mt-1 = "Comment: #{activity.content}"

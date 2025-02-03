@@ -1,0 +1,10 @@
+.notification.w-full.py-3.px-4.mb-3.border.border-solid class=wrap_classes
+  .flex.items-start.justify-between
+    .flex.items-start
+      .w-5
+        = inline_svg_tag icon, class: 'h-6 w-6'
+      .ml-3
+        p.undefined.font-medium.flex.text-black
+          = @text.html_safe
+    .cursor-pointer[onclick="this.closest('.notification').remove()"]
+      = inline_svg_tag 'icons/xmark.svg', class: 'h-3 w-3', role: 'button'
