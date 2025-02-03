@@ -1,8 +1,79 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+require:
+  - rubocop-performance
+  - rubocop-rspec
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+inherit_mode:
+  merge:
+    - Include
+
+AllCops:
+  Include:
+    - '**/Gemfile'
+
+  CacheRootDirectory: tmp/cache/rubocop_cache/
+  TargetRubyVersion: 3.3.4
+  DefaultFormatter: fuubar
+  NewCops: enable
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Layout/LineLength:
+  Exclude:
+    - 'bin/**/*'
+  Max: 120
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
+
+Metrics/BlockLength:
+  Enabled: false
+
+Performance/MethodObjectAsBlock:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - 'app/models/project.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/**/*'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'spec/**/*'
+    - 'bin/**/*'

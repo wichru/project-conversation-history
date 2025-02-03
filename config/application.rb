@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,5 +23,9 @@ module ProjectConversationHistory
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # ViewComponent configuration
+    config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
+    config.view_component.default_preview_layout = 'component_preview'
   end
 end

@@ -1,0 +1,7 @@
+h1.text-2xl.font-bold = @project.name
+turbo-frame#project_status
+  = render ProjectStatusComponent.new(project: @project)
+
+= render ActivitiesListComponent.new(project: @project)
+= render CommentFormComponent.new(project: @project)
+= render StatusChangeFormComponent.new(project: @project)

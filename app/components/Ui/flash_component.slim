@@ -1,0 +1,5 @@
+.flash.fixed.top-2.inset-x-1/2.z-10 data-turbo-temporary="true" role="alert" class=['w-[500px]', '-ml-[250px]']
+  - flash.each do |type, msg|
+    - next if msg.blank? || !msg.is_a?(String)
+
+    = render Ui::NotificationComponent.new(type: cast_type(type), text: msg)

@@ -1,24 +1,53 @@
-# README
+# Project Conversation History Homey Code Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby application for Homey code challenge https://allentities.notion.site/Task-Development-Team-d5aae74100544f84981972edb3d922b0
 
-Things you may want to cover:
+## System dependencies
 
-* Ruby version
+* [Ruby 3.3.4]
+* [Rails 7]
+* [Turbo && Stimulus] - For handling form submission asynchronously.
+* [Slim && ViewComponent] - Slim templates for cleaner views.
+* [Rubocop] - Ruby static code analyzer
+* [RSpec && Capybara] - Rspec tests && Capybara feature tests.
 
-* System dependencies
+## Features
+1. **Add comments to a project asynchronously**
+2. **View comments in chronological order**
+3. **Change project status asynchronously**
+4. **Track project status changes**
 
-* Configuration
+## Installation
 
-* Database creation
+1. Clone the repository:
+```bash
+git clone [https://github.com/wichru/project-conversation-history]
+cd project-conversation-history
+```
 
-* Database initialization
+2. Install dependencies:
+```bash
+bundle install
+```
 
-* How to run the test suite
+3. Create database:
+```bash
+rails db:create db:migrate db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Run the application:
+```bash
+bin/dev
+```
+Application will be running on http://localhost:3000
 
-* Deployment instructions
+### Tests && code coverage
 
-* ...
+```sh
+$ cd project-conversation-history
+$ rspec spec
+```
+
+### Demo app
+
+You can find a demo app deployed on Fly.io [here](https://dark-bird-5069.fly.dev/)

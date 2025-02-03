@@ -1,0 +1,5 @@
+h3.text-lg.font-medium.mt-6 Change Project Status
+= form_with(url: project_status_changes_path(project), method: :post, data: { turbo_frame: "_top" }) do |f|
+  .mb-4
+    = f.select :to_status, options_for_select(Project.statuses.keys, project.status), {}, class: "w-full p-2 border rounded", name: "status_change[to_status]"
+  = f.submit "Change Status", class: "bg-green-500 text-white px-4 py-2 rounded"
